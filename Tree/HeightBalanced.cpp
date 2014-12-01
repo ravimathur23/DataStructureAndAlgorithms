@@ -56,11 +56,9 @@ int main() {
 	root->left->left =left_1;
 	root->left->right = right_1;
 	
-	
 	print_inorder(root);
 	
-	
-	cout<<checkHeightBalanced(root);
+	cout<<"checkHeightBalanced="<<checkHeightBalanced(root);
 	
 	return 0;
 }
