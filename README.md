@@ -1,5 +1,7 @@
 DataStructureAndAlgorithms
 ==========================
 
-1. Tree (so far..)
-2. 
+1. Tree 
+2. Arrays
+so far.. 
+
