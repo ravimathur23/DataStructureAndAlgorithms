@@ -22,9 +22,21 @@ int maxSubArr(int arr[], int len){
 
 int main() {
 	// your code goes here
-	int arr[] = {1,2,-1,2,-5};
+	int arr[] = {-1,-2,-1,-2,-5};
 	int len = sizeof(arr) / sizeof(arr[0]);
 	
-	cout<<"maxSubArr: "<<maxSubArr(arr, len);
+	int isAllNeg = 1, sum=0;
+	for(int i=0;i<len;i++){
+		if(arr[i]>0){
+			isAllNeg = 0;
+		}
+		else
+			sum += arr[i];
+	}
+	
+	if(isAllNeg)
+		cout<<"maxSubArr(all -ve): "<<sum;
+	else
+		cout<<"maxSubArr: "<<maxSubArr(arr, len);
 	return 0;
 }
