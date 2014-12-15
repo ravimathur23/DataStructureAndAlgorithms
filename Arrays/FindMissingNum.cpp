@@ -12,7 +12,7 @@ int findMissingNum(int arr[], int len){
 		totalSum += (i+1);
 	}
 	
-    i++;
+        i++;
 	totalSum += i;
 	return totalSum - sumArr;
 }	
