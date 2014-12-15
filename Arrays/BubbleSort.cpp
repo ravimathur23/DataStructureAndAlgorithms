@@ -3,11 +3,11 @@ using namespace std;
 void bubbleSort(int arr[], int len){
 	for(int i=0;i<len;i++)
 	{
-		for(int j=i;j<len;j++){
-			if(arr[i]>arr[j]){
-				int tmp = arr[i];
-				arr[i] = arr[j];
-				arr[j] = tmp;
+		for(int j=0;j<len-1;j++){
+			if(arr[j]>arr[j+1]){
+				int tmp = arr[j];
+				arr[j] = arr[j+1];
+				arr[j+1] = tmp;
 			}
 		}
 	}
