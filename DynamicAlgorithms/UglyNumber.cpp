@@ -41,12 +41,10 @@ int uglyNumber(int nth){
 			isUglyNum = checkDiv(num, 5);
 		
 		
-	//	cout<<"rr"<<isUglyNum<<endl;
 		if(isUglyNum){
 			++counter;
 		}
 		
-	//	cout<<counter << nth<<endl;
 		if(counter ==  nth)
 			break;
 		
