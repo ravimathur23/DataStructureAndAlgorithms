@@ -6,8 +6,10 @@ bool checkDiv(int &num, int div){
 			return num;
 
 		while(1){
+			
 			int lastNum = num;
-			int rem = num%div;int num = num/div;
+			
+			int rem = num%div;num = num/div;
 			
 			if(rem == 0 && num != 1){
 				continue;
@@ -20,7 +22,7 @@ bool checkDiv(int &num, int div){
 		}
 }
 
-bool uglyNumber(int nth){
+int uglyNumber(int nth){
 	int counter=1, numSeq=2;
 	bool isUglyNum = false;
 	
@@ -29,28 +31,36 @@ bool uglyNumber(int nth){
 	
 	while(1){
 		int num = numSeq;
-		isUglyNum = checkDiv(num, 2);
-		isUglyNum = checkDiv(num, 3);
-		isUglyNum = checkDiv(num, 5);
 		
+		isUglyNum = checkDiv(num, 2);
+		
+		if(num != 1)
+			isUglyNum = checkDiv(num, 3);
+		
+		if(num != 1)
+			isUglyNum = checkDiv(num, 5);
+		
+		
+	//	cout<<"rr"<<isUglyNum<<endl;
 		if(isUglyNum){
 			++counter;
 		}
 		
+	//	cout<<counter << nth<<endl;
 		if(counter ==  nth)
 			break;
 		
 		++numSeq;
 	}
 
-	return isUgleNum;
+	return numSeq;
 }
 
 int main() {
 	// your code goes here
-	int nth = 1;
+	int nth = 150;
 	
-	cout<<"ugle number at "+nth+"="+uglyNumber(nth);
+	cout<<"ugly number at "<<nth<<"="<<uglyNumber(nth);
 	
 	return 0;
 }
