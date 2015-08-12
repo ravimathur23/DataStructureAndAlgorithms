@@ -1,64 +1,52 @@
 #include <iostream>
 using namespace std;
 
-bool checkDiv(int &num, int div){
-		if(num == 0)
-			return num;
-
-		while(1){
-			
-			int lastNum = num;
-			
-			int rem = num%div;num = num/div;
-			
-			if(rem == 0 && num != 1){
-				continue;
-			}else if(rem == 0 && num == 1)
-				return true;
-			else{
-				num = lastNum;
-				return false;
-			}
-		}
+int min(int a, int b, int c){
+	int min_val = a;
+	
+	if(b<a)
+		min_val = b;
+	
+	if(min_val > c)
+		min_val = c;
+	
+	return min_val;
 }
 
-int uglyNumber(int nth){
-	int counter=1, numSeq=2;
-	bool isUglyNum = false;
+void printUglyNum(int uglyNum){
+	int Ugly[160];
 	
-	if(nth == 1)
-		return true;
+	Ugly[0] = 1; 
+	int i2 = 0, i3 = 0, i5 = 0;
+	int nxt_mul_2 = 2, nxt_mul_3 = 3, nxt_mul_5 = 5;
 	
-	while(1){
-		int num = numSeq;
+	for(int i=1;i<uglyNum;i++){
+		int curr_ugly_num = min(nxt_mul_2, nxt_mul_3, nxt_mul_5);
+		Ugly[i] = curr_ugly_num;
 		
-		isUglyNum = checkDiv(num, 2);
-		
-		if(num != 1)
-			isUglyNum = checkDiv(num, 3);
-		
-		if(num != 1)
-			isUglyNum = checkDiv(num, 5);
-		
-		
-		if(isUglyNum){
-			++counter;
+		if(curr_ugly_num == nxt_mul_2)
+		{
+			i2++;
+			nxt_mul_2 = Ugly[i2]*2;
 		}
-		
-		if(counter ==  nth)
-			break;
-		
-		++numSeq;
+		if(curr_ugly_num == nxt_mul_3)
+		{
+			i3++;
+			nxt_mul_3 = Ugly[i3]*3;
+		}
+		if(curr_ugly_num == nxt_mul_5){
+			i5++;
+			nxt_mul_5 = Ugly[i5]*5;
+		}
 	}
-
-	return numSeq;
+	
+	for(int i=0;i<150;i++)
+		cout<<" "<<Ugly[i]<<" ";
 }
 
 int main() {
-	// your code goes here
-	int nth = 150;
-	
-	cout<<"ugly number at "<<nth<<"="<<uglyNumber(nth);
+	int nthUglyNum = 150;
+	printUglyNum(nthUglyNum);
 	
 	return 0;
 }
