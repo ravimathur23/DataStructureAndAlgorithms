@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+//Time complexity = O(n)
 
 int maxSubArray(int a[], int len){
 	int max_so_far = 0, tmp_max = 0, neg=0;
