@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+//Time complexity = O(m*n)
+//Space complexity = O(m*n)
 
 int min(int a, int b, int c){
 	int min_val = a;
