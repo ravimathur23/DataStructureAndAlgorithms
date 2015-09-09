@@ -25,15 +25,9 @@ void print_boolean_mat(int a[][4], int row_sz, int col_sz){
 
 	for(int i=1;i<row_sz;i++){
 		for(int j=1;j<col_sz;j++){
-/*			if(i==0 || j==0){
-				if(rowFlag || colFlag)
-					a[i][j]=1;
-			}
-			else{
-*/				if(a[0][j]==1 || a[i][0]==1){
+			if(a[0][j]==1 || a[i][0]==1){
 					a[i][j] = 1;
-				}
-//			}
+			}
 		}
 	}
 	
