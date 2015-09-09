@@ -1,6 +1,9 @@
 #include <iostream>
 using namespace std;
 
+//Space compexity - O(1)
+//Time complexity - O(M*N)
+
 void print_boolean_mat(int a[][4], int row_sz, int col_sz){
 	bool rowFlag = false, colFlag = false;
 
