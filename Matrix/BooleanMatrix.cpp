@@ -51,8 +51,8 @@ void print_boolean_mat(int a[][4], int row_sz, int col_sz){
 int main() {
 	
 	int A[][4] = {0,0,1,0,
-			      0,0,0,0,
-			      1,0,0,0};
+		      0,0,0,0,
+		      1,0,0,0};
 	
 	int row_sz = sizeof(A)/sizeof(A[0]);
 	int col_sz = sizeof(A[0])/sizeof(int);
