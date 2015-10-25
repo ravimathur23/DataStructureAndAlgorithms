@@ -23,7 +23,7 @@ Tree* get_node(int d){
 void printTree(Tree* node){
     if(node == NULL)
         return;
-    
+   
     printTree(node->left);
     printTree(node->right);
     cout<<node->getData()<<" ";
@@ -39,24 +39,15 @@ Tree* removeHalfNode(Tree* node){
     node->right = removeHalfNode(node->right);
   
     if((node->left && node->right == NULL)){
-        if(node->left->left == NULL && node->left->right == NULL){
-            delete node->left;
-            node->left = NULL;
-        }
-        else{
-            delete node;
-            return node->left;
-        }
+        Tree* tmp= node->left;
+        delete node;
+        return tmp;
     }
     else if(node->right && (node->left == NULL)){
-        if(node->right->left == NULL && node->right->right == NULL){
-            delete node->right;
-            node->right = NULL;
-        }
-        else{
-            delete node;
-            return node->right;
-        }
+        Tree* tmp = node->right;
+        delete node;
+        return tmp;
+        
     }
     else{
         //
@@ -77,6 +68,7 @@ int main(){
    
     printTree(root);cout<<endl;
     removeHalfNode(root);
+    
     printTree(root);
     return 0;
 }
