@@ -3,7 +3,7 @@
 using namespace std;
 class LL{
     int d;
-    public:
+public:
     LL(int data):d(data){next = NULL;}
     LL* next;
     int getD(){return d;}
@@ -16,21 +16,28 @@ void printLL(LL* node){
         node = node->next;
     }
 }
-void detectLoop(LL* node){
+void removeLoop(LL* head, LL* loop){
+    LL* prev = NULL;
+    while(1){
+        if(head == loop){
+            prev->next = NULL;
+            return;
+        }
+        head = head->next;
+        prev = loop;
+        loop = loop->next;
+    }
+}
+void detectAndRemoveLoop(LL* node){
     LL* first = node;
-    LL* second = node->next;
+    LL* second = node;
     int f,s;
- 
+    
     if(first->next == NULL){
         cout<<"No Loop detected"<<endl;
     }
     
     while(1){
-        
-        if(first == second){
-            cout<<"Loop detected";
-            return;
-        }
         f=1; s=2;
         while (f) {
             if(first->next != NULL){
@@ -52,7 +59,11 @@ void detectLoop(LL* node){
                 return;
             }
         }
-        
+        if(first == second){
+            cout<<"Loop detected";
+            removeLoop(node, first);
+            return;
+        }
     }
 }
 
@@ -66,8 +77,8 @@ int main(){
     head->next->next->next->next->next->next = new LL(11);
     head->next->next->next->next->next->next->next = head->next->next->next;
     
-    detectLoop(head);
-
+    detectAndRemoveLoop(head);
+    printLL(head);
+    
     return 0;
 }
-
