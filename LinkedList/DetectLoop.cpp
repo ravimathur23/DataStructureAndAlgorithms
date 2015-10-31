@@ -64,10 +64,9 @@ int main(){
     head->next->next->next->next  = new LL(9);
     head->next->next->next->next->next  = new LL(10);
     head->next->next->next->next->next->next = new LL(11);
-//    head->next->next->next->next->next->next->next = head->next->next->next;
+    head->next->next->next->next->next->next->next = head->next->next->next;
     
     detectLoop(head);
-    //printLL(head);cout<<endl;
 
     return 0;
 }
