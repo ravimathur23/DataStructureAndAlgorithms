@@ -41,14 +41,6 @@ int main(){
     int arr[] = {1,2,3,4,5,6,7,8,9,10};
     int n = sizeof(arr)/sizeof(arr[0]);
     print_arr(arr, n);
-    reverse(arr, 0, n-1);
-    print_arr(arr, n);
-    reverse(arr, 0, n-1);
-    print_arr(arr, n);
-    leftRotate(arr, 2, 0, n-1);
-    print_arr(arr, n);
-    rightRotate(arr, 2, 0, n-1);
-    print_arr(arr, n);
     move(arr, 8, 1);
     print_arr(arr, n);
     move(arr,1,8);
