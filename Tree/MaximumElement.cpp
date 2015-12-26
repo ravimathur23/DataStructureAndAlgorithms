@@ -40,21 +40,21 @@ void getMaxElemInTreeUtil(Tree* node, int &max){
     getMaxElemInTreeUtil(node->right, max);
 }
 int getMaxElemInTree(Tree* node){
-    int max = 0;
+    int max = INT_MIN;
     getMaxElemInTreeUtil(node, max);
     return max;
 }
 
 int main(){
-    Tree *root = get_node(20);
-    root->left = get_node(9);
-    root->left->left = get_node(5);
-    root->left->right = get_node(12);
-    root->left->right->right = get_node(15);
-    root->right = get_node(49);
-    root->right->left = get_node(23);
-    root->right->right= get_node(52);
-    root->right->right->left = get_node(50);
+    Tree *root = get_node(-20);
+    root->left = get_node(-9);
+    root->left->left = get_node(-5);
+    root->left->right = get_node(-12);
+    root->left->right->right = get_node(-15);
+    root->right = get_node(-49);
+    root->right->left = get_node(-5);
+    root->right->right= get_node(-52);
+    root->right->right->left = get_node(-50);
     
     cout<<getMaxElemInTree(root);
     
