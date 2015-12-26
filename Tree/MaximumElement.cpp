@@ -1,10 +1,11 @@
 #include <iostream>
 #include <limits>
+#include <queue>
 using namespace std;
 
 class Tree{
     int data;
-    public:
+public:
     Tree(int d){
         data = d;
         left = NULL;
@@ -18,25 +19,44 @@ Tree* get_node(int d){
     Tree *node = new Tree(d);
     return node;
 }
-int findMaxElem(Tree* node) {
+
+void printTree(Tree* node){
     if(node == NULL)
-        return 0;
+        return;
     
-    int l = findMaxElem(node->left);
-    int r = findMaxElem(node->right);
-    
-    int maxElem = max(max(l,r), node->getData());
-    return maxElem;
+    cout<<node->getData()<<" ";
+    printTree(node->left);
+    printTree(node->right);
+    return;
 }
+
+void getMaxElemInTreeUtil(Tree* node, int &max){
+    if(node == NULL)
+        return;
+    
+    if(node->getData() > max)
+        max = node->getData();
+    getMaxElemInTreeUtil(node->left, max);
+    getMaxElemInTreeUtil(node->right, max);
+}
+int getMaxElemInTree(Tree* node){
+    int max = 0;
+    getMaxElemInTreeUtil(node, max);
+    return max;
+}
+
 int main(){
-    Tree *root = get_node(10);
-    root->left = get_node(2);
-    root->right = get_node(10);
-    root->left->left = get_node(20);
-    root->left->right = get_node(1);
-    root->right->right = get_node(-25);
-    root->right->right->left = get_node(3);
-    root->right->right->right = get_node(4);
-    cout<<findMaxElem(root)<<endl;
+    Tree *root = get_node(20);
+    root->left = get_node(9);
+    root->left->left = get_node(5);
+    root->left->right = get_node(12);
+    root->left->right->right = get_node(15);
+    root->right = get_node(49);
+    root->right->left = get_node(23);
+    root->right->right= get_node(52);
+    root->right->right->left = get_node(50);
+    
+    cout<<getMaxElemInTree(root);
+    
     return 0;
 }
