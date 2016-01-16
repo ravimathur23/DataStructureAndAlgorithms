@@ -9,23 +9,6 @@ public:
     int get_data(){return data;}
     void set_data(int d){data = d;}
 };
-int maxDepth(Tree *node){
-    if(node)
-    {
-        int left_depth = maxDepth(node->left);
-        int right_depth = maxDepth(node->right);
-        
-        if(left_depth > right_depth)
-            return left_depth+1;
-        else
-            return right_depth+1;
-    }
-    return 0;
-}
-int diameter(Tree *node){
-    return maxDepth(node->left)+1+maxDepth(node->right);
-    
-}
 
 void print_inorder(Tree *node){
     if(node == NULL)
@@ -34,6 +17,31 @@ void print_inorder(Tree *node){
     print_inorder(node->left);
     cout<<node->get_data()<<" ";
     print_inorder(node->right);
+}
+
+int maxDepth(Tree* node){
+    if(node == NULL)
+        return 0;
+    
+    int lDep = maxDepth(node->left);
+    int rDep = maxDepth(node->right);
+    
+    return max(lDep, rDep)+1;
+}
+
+int diameter(Tree* node){
+
+    if(node ==  NULL)
+        return 0;
+    
+    int lh = maxDepth(node->left);
+    int rh = maxDepth(node->right);
+    
+    int lDia = diameter(node->left);
+    int rDia = diameter(node->right);
+    
+    return max(lh+rh+1, max(lDia,rDia));
+        
 }
 
 int main() {
