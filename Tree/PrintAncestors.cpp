@@ -1,54 +1,69 @@
 #include <iostream>
-#include <stack>
+#include <limits>
+#include <queue>
 using namespace std;
 
 class Tree{
     int data;
 public:
-    Tree(int d):data(d){left= NULL; right=NULL;};
-    Tree * left; Tree * right;
-    int get_data(){return data;}
+    Tree(int d){
+        data = d;
+        left = NULL;
+        right = NULL;
+        random = NULL;
+    }
+    int getData(){return data;}
+    void setData(int d){data=d;}
+    Tree *left, *right, *random;
 };
 
-void printStack(stack<int> *q){
-    while(!q->empty()){
-        cout<<q->top()<<" ";
-        q->pop();
-    }
+Tree* get_node(int d){
+    Tree *node = new Tree(d);
+    return node;
 }
 
-void printAncestorsUtil(Tree* node, int num, stack<int> q){
+void printTree(Tree* node){
     if(node == NULL)
         return;
     
-    if(num == node->get_data())
-        printStack(&q);
+    printTree(node->left);
+    printTree(node->right);
     
-    q.push(node->get_data());
-    printAncestorsUtil(node->left, num, q);
-    printAncestorsUtil(node->right, num, q);
+    cout<<node->getData()<<" ";
+    
+    return;
 }
 
-void printAncestors(Tree* node, int num){
-    stack<int> q;
-    printAncestorsUtil(node, num, q);
+bool printAncestor(Tree* node, int key){
+    if(node == NULL)
+        return false;
+    
+    if(node->getData() ==  key)
+        return true;
+    
+    if(printAncestor((node->left), key) || printAncestor(node->right, key)){
+        cout<<node->getData()<<" ";
+        return true;
+    }
+    return false;
 }
 
-int main() {
-    // your code goes here
-    Tree *root = new Tree(20);
-    Tree *left = new Tree(9);
-    Tree *right = new Tree(21);
-    root->left = left;
-    root->right = right;
+int main(){
+    Tree *root = get_node(1);
+    root->left = get_node(2);
+    root->left->left = get_node(4);
+    root->left->right = get_node(5);
+    root->left->right->left = get_node(7);
+    root->left->right->right = get_node(8);
+    root->right = get_node(3);
+    root->right->right = get_node(6);
+    root->right->right->left = get_node(9);
     
-    Tree *left_1 = new Tree(8);
-    Tree *right_1 = new Tree(10);
-    root->left->left =left_1;
-    root->left->right = right_1;
-    left_1->left = new Tree(7);
+    printTree(root);
+    cout<<endl;
     
-    printAncestors(root, 7);
+    printAncestor(root, 9);
+
     
     return 0;
 }
